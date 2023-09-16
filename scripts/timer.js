@@ -8,8 +8,7 @@ let breakTime = breakvar;
 let seconds = 0;
 let working = true;
 
-let workTimerInterval;
-let breakTimerInterval;
+let timerInterval;
 //Initialisation of the HTML page
 updateHTMLTimer();
 
@@ -17,16 +16,26 @@ updateHTMLTimer();
 let start = document.getElementById("start");
 start.addEventListener("click", () => {
     if (working) {
-        workTimerInterval = setInterval(workTimer, 10);
+        timerInterval = setInterval(workTimer, 100);
     }
     else {
-        breakTimerInterval = setInterval(breakTimer, 10);
+        timerInterval = setInterval(breakTimer, 100);
     }
 })
 
+
 let reset = document.getElementById("reset");
 reset.addEventListener("click", () => {
-    alert("reset")
+    clearInterval(timerInterval);
+    if (working) {
+        workTime=workvar;
+    }
+    else {
+        working=true;
+        breakTime=breakvar;
+    }
+    seconds=0;
+    updateHTMLTimer();
 })
 
 
@@ -34,7 +43,7 @@ function workTimer() {
     if (seconds == 0) {
         if (workTime==0) {
             swapTimer();
-            clearInterval(workTimerInterval);
+            clearInterval(timerInterval);
         }
         else {
             workTime-=1;
@@ -51,7 +60,7 @@ function breakTimer() {
     if (seconds == 0) {
         if (breakTime==0) {
             swapTimer();
-            clearInterval(breakTimerInterval);
+            clearInterval(timerInterval);
         }
         else{
             breakTime-=1;
@@ -69,15 +78,12 @@ function swapTimer() {
     if (working) {
         working = false;
         workTime = workvar;
-        console.log("work : " + workTime);
-        updateHTMLTimer();
     }
     else {
         working=true;
         breakTime = breakvar;
-        console.log("break : " + breakTime);
-        updateHTMLTimer();
     }
+    updateHTMLTimer();
 }
 
 
