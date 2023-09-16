@@ -19,7 +19,7 @@ reset.addEventListener("click", () => {
     alert("reset")
 })
 
-setInterval( , (1000));
+setInterval( timer(), (1000));
 
 function timer() {
     console.log("3")
