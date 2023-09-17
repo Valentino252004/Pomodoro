@@ -1,3 +1,8 @@
+//initialisation of status button
+const buttonWork = document.querySelector("#buttonWork");
+const buttonBreak = document.querySelector("#buttonBreak");
+buttonBreak.disabled = true;
+
 //initialisation of variables
 let workvar = 1;
 let workTime = workvar;
@@ -78,10 +83,14 @@ function swapTimer() {
     if (working) {
         working = false;
         workTime = workvar;
+        buttonWork.disabled = true;
+        buttonBreak.disabled = false;
     }
     else {
         working=true;
         breakTime = breakvar;
+        buttonWork.disabled = false;
+        buttonBreak.disabled = true;
     }
     updateHTMLTimer();
 }
