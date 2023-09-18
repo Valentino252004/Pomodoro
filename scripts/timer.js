@@ -1,7 +1,6 @@
 //initialisation of status button
 const buttonWork = document.querySelector("#buttonWork");
 const buttonBreak = document.querySelector("#buttonBreak");
-buttonBreak.disabled = true;
 
 //initialisation of variables
 let workvar = 1;
@@ -20,12 +19,9 @@ updateHTMLTimer();
 //Listeners for the start and reset buttons
 let start = document.getElementById("start");
 start.addEventListener("click", () => {
-    if (working) {
-        timerInterval = setInterval(workTimer, 100);
-    }
-    else {
-        timerInterval = setInterval(breakTimer, 100);
-    }
+    timerInterval = setInterval(workTimer, 100);
+    document.getElementById("start").style.display = "none";
+    document.getElementById("reset").style.display = "block";
 })
 
 

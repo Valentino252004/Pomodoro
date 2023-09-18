@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
 body{
     font-size: 6vh;
     background-color: #c0c0c0;
@@ -6,6 +12,7 @@ body{
 h1{
     text-align: center;
     font-size: 1.5em;
+    margin-bottom: 3vh ;
 }
 
 .status>button {
@@ -61,11 +68,14 @@ h1{
 .actionButton{
     border: solid 1.5vh;
     display: flex;
-    width: 40vh;
+    width: 40vh;    
+    background-color: #e0e0e0;
     margin: auto;
+    height: 6vh;
     align-items: center;
     justify-content: center;
     border-radius: 5vh;
+    font-size: 0.8em;
 }
 
 #reset, #start {
