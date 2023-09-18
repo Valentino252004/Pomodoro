@@ -70,7 +70,7 @@ updateHTMLTimer();
 //Listeners for the start and reset buttons
 let start = document.getElementById("start");
 start.addEventListener("click", () => {
-    timerInterval = setInterval(timer, 10);
+    timerInterval = setInterval(timer, 1000);
     document.getElementById("start").style.display = "none";
     document.getElementById("reset").style.display = "block";
 })
