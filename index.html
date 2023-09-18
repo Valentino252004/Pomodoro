@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
     <link rel="stylesheet" href="styles/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    
     <header>
         <h1>Pomodoro</h1>
     </header>
@@ -17,16 +22,18 @@
         <button id="buttonBreak">Break</button>
     </section>
 
-    <section>
+    <section class="timerSection">
         <p id="timer"></p>
     </section>
 
-    <section>
-        <button id="start">Start</button>
-    </section>
+    <section class="actionButton">
+        <div>
+            <button id="start">Start</button>
+        </div>
 
-    <section>
-        <button id="reset">Reset</button>
+        <div>
+            <button id="reset">Reset</button>
+        </div>
     </section>
 
     <script src="scripts/timer.js"></script>

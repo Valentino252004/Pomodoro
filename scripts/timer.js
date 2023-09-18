@@ -31,16 +31,7 @@ start.addEventListener("click", () => {
 
 let reset = document.getElementById("reset");
 reset.addEventListener("click", () => {
-    clearInterval(timerInterval);
-    if (working) {
-        workTime=workvar;
-    }
-    else {
-        working=true;
-        breakTime=breakvar;
-    }
-    seconds=0;
-    updateHTMLTimer();
+    location.reload();
 })
 
 

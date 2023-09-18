@@ -1,3 +1,83 @@
+body{
+    font-size: 6vh;
+    background-color: #c0c0c0;
+}
+
+h1{
+    text-align: center;
+    font-size: 1.5em;
+}
+
 .status>button {
     pointer-events: none;
+    width: 50%;
+    border: none;
+    background-color: #e0e0e0;
+    font-size: 0.8em;
+}
+
+#buttonWork {
+    color: black;
+    border-bottom-left-radius: 5vh;
+    border-top-left-radius: 5vh;
+}
+
+#buttonBreak {
+    color: #aaaaaa;
+    border-bottom-right-radius: 5vh;
+    border-top-right-radius: 5vh;
+}
+
+.status{
+    border: solid 1.5vh;
+    width: 40vh;
+    margin:auto;
+    margin-bottom: 3vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 5vh;
+    background-color: #e0e0e0;
+}
+
+#timer {
+    font-size: 1.5em;
+    font-family: 'Noto Sans JP', sans-serif;
+    
+}
+.timerSection {
+    border: solid 2vh;
+    border-radius: 50%;
+    height: 40vh;
+    width: 40vh;
+    margin: auto;
+    margin-bottom: 3vh; 
+    display: flex;
+    background-color: #e0e0e0;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionButton{
+    border: solid 1.5vh;
+    display: flex;
+    width: 40vh;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5vh;
+}
+
+#reset, #start {
+    border:none;
+    background-color: #e0e0e0;
+    height: auto;
+    width: 40vh;
+    border-radius: 5vh;
+    text-align: center;
+    font-size: inherit;
+}
+
+#reset {
+    display: none;
 }
