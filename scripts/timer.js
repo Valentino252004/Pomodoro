@@ -73,6 +73,8 @@ start.addEventListener("click", () => {
     timerInterval = setInterval(timer, 1000);
     document.getElementById("start").style.display = "none";
     document.getElementById("reset").style.display = "block";
+    document.getElementById("chosenWorkTime").disabled= "true";
+    document.getElementById("chosenBreakTime").disabled= "true";
 })
 
 
