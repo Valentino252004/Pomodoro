@@ -3,23 +3,74 @@ const buttonWork = document.querySelector("#buttonWork");
 const buttonBreak = document.querySelector("#buttonBreak");
 
 //initialisation of variables
-let workvar = 1;
-let workTime = workvar;
+let workvar;
+let workTime;
+let breakvar;
+let breakTime;
 
-let breakvar = 2;
-let breakTime = breakvar;
+//checks if local variables exists
+if(localStorage.getItem("workTime")==null) {
+    localStorage.setItem("workTime", 25);
+    workvar = 25;
+}
+else {
+    workvar = localStorage.getItem("workTime");
+}
+workTime = workvar;
+
+if(localStorage.getItem("breakTime")==null) {
+    localStorage.setItem("breakTime", 5);
+    breakvar = 5;
+}else {
+    breakvar = localStorage.getItem("breakTime");
+}
+breakTime = breakvar;
+
+document.getElementById("chosenWorkTime").value=localStorage.getItem("workTime");
+document.getElementById("chosenBreakTime").value=localStorage.getItem("breakTime");
+
+//localy stored variables will update
+chosenWorkTime.onchange = function() {
+    workvar = document.getElementById("chosenWorkTime").value;
+    workvar = Math.round(workvar); 
+    if (workvar>120) {
+        workvar = 120;
+    }
+    if (workvar < 1) {
+        workvar = 1;
+    }
+    document.getElementById("chosenWorkTime").value=workvar;
+    localStorage.setItem("workTime", workvar);
+    workTime = workvar;
+    updateHTMLTimer();
+}
+chosenBreakTime.onchange = function() {
+    breakvar = document.getElementById("chosenBreakTime").value;
+    breakvar = Math.round(breakvar);  
+    if (breakvar>60) {
+        breakvar = 60;
+    }
+    if (breakvar < 1) {
+        breakvar = 1;
+    }
+    document.getElementById("chosenBreakTime").value=breakvar;
+    localStorage.setItem("breakTime", breakvar);
+    breakTime = breakvar;
+    updateHTMLTimer();
+}
 
 let seconds = 0;
 let working = true;
 
 let timerInterval;
+
 //Initialisation of the HTML page
 updateHTMLTimer();
 
 //Listeners for the start and reset buttons
 let start = document.getElementById("start");
 start.addEventListener("click", () => {
-    timerInterval = setInterval(workTimer, 100);
+    timerInterval = setInterval(timer, 10);
     document.getElementById("start").style.display = "none";
     document.getElementById("reset").style.display = "block";
 })
@@ -31,11 +82,19 @@ reset.addEventListener("click", () => {
 })
 
 
+function timer() {
+    if (working) {
+        workTimer();
+    }
+    else {
+        breakTimer();
+    }
+}
+
 function workTimer() {
     if (seconds == 0) {
         if (workTime==0) {
             swapTimer();
-            clearInterval(timerInterval);
         }
         else {
             workTime-=1;
@@ -52,7 +111,6 @@ function breakTimer() {
     if (seconds == 0) {
         if (breakTime==0) {
             swapTimer();
-            clearInterval(timerInterval);
         }
         else{
             breakTime-=1;
@@ -70,14 +128,14 @@ function swapTimer() {
     if (working) {
         working = false;
         workTime = workvar;
-        buttonWork.disabled = true;
-        buttonBreak.disabled = false;
+        document.getElementById("buttonBreak").style.color = "black";
+        document.getElementById("buttonWork").style.color = "#555b61";
     }
     else {
         working=true;
         breakTime = breakvar;
-        buttonWork.disabled = false;
-        buttonBreak.disabled = true;
+        document.getElementById("buttonWork").style.color = "black";
+        document.getElementById("buttonBreak").style.color = "#555b61";
     }
     updateHTMLTimer();
 }
