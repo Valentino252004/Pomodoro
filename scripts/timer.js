@@ -8,7 +8,8 @@ let workTime;
 let breakvar;
 let breakTime;
 
-//checks if local variables exists
+//Checks if local variables exists, sets their value to the variable or create them if they don't
+//for the work time
 if(localStorage.getItem("workTime")==null) {
     localStorage.setItem("workTime", 25);
     workvar = 25;
@@ -18,6 +19,7 @@ else {
 }
 workTime = workvar;
 
+//for the break time
 if(localStorage.getItem("breakTime")==null) {
     localStorage.setItem("breakTime", 5);
     breakvar = 5;
@@ -26,10 +28,13 @@ if(localStorage.getItem("breakTime")==null) {
 }
 breakTime = breakvar;
 
+//Initialise the value of the input boxes to the local storage's 
+//value for the chosen work and break times
 document.getElementById("chosenWorkTime").value=localStorage.getItem("workTime");
 document.getElementById("chosenBreakTime").value=localStorage.getItem("breakTime");
 
-//localy stored variables will update
+//localy stored variables will update when the user changes his work and break time
+//for the work time
 chosenWorkTime.onchange = function() {
     workvar = document.getElementById("chosenWorkTime").value;
     workvar = Math.round(workvar); 
@@ -44,6 +49,8 @@ chosenWorkTime.onchange = function() {
     workTime = workvar;
     updateHTMLTimer();
 }
+
+//for the break time
 chosenBreakTime.onchange = function() {
     breakvar = document.getElementById("chosenBreakTime").value;
     breakvar = Math.round(breakvar);  
@@ -59,15 +66,17 @@ chosenBreakTime.onchange = function() {
     updateHTMLTimer();
 }
 
+//Initialisation of variables
 let seconds = 0;
 let working = true;
 
 let timerInterval;
 
-//Initialisation of the HTML page
+//Initialisation of the timer's display
 updateHTMLTimer();
 
-//Listeners for the start and reset buttons
+//Initialisation of the start button that start the timer, disappear, show the reset button
+//and block the input boxes
 let start = document.getElementById("start");
 start.addEventListener("click", () => {
     timerInterval = setInterval(timer, 1000);
@@ -77,13 +86,13 @@ start.addEventListener("click", () => {
     document.getElementById("chosenBreakTime").disabled= "true";
 })
 
-
+//Initialisation of the reset button that reload the html page
 let reset = document.getElementById("reset");
 reset.addEventListener("click", () => {
     location.reload();
 })
 
-
+//Decides of wich function to execute depending on the work or break time
 function timer() {
     if (working) {
         workTimer();
@@ -93,6 +102,7 @@ function timer() {
     }
 }
 
+//decreases the timer while on work time
 function workTimer() {
     if (seconds == 0) {
         if (workTime==0) {
@@ -109,6 +119,7 @@ function workTimer() {
     updateHTMLTimer();
 }
 
+//decreases the timer while on break time
 function breakTimer() {
     if (seconds == 0) {
         if (breakTime==0) {
@@ -125,7 +136,7 @@ function breakTimer() {
     updateHTMLTimer();
 }
 
-
+//swaps from work time to break time and the other way around 
 function swapTimer() {
     if (working) {
         working = false;
@@ -142,7 +153,7 @@ function swapTimer() {
     updateHTMLTimer();
 }
 
-
+//updates the html timer display
 function updateHTMLTimer() {
     let time = "";
 
